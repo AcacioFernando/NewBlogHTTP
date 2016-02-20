@@ -2695,3 +2695,18 @@ padding-bottom: 10px;
 .post6-comentarios .glyphicon-comment:before, .glyphicon-time:before, .glyphicon-eye-open:before{
   font-size: 21px;
 }
+
+.modal-header, h4, .close {
+  background-color: #FFC700!important;
+  color:white !important;
+  text-align: center;
+  font-size: 30px;
+}
+.modal-footer {
+  background-color: #f9f9f9;
+}
+
+.btn-login .btn-success{
+  background-color: #FFC700!important;
+  border-color: #FFC700!important;
+}
