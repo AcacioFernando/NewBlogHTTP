@@ -1,0 +1,319 @@
+<% layout('layout') -%>
+
+<!--banner-->
+<div class="banner">
+    <div class="container">
+        <script src="/javascripts/responsiveslides.min.js"></script>
+        <script>
+            $(function () {
+                $("#slider").responsiveSlides({
+                    auto: false,
+                    nav: true,
+                    speed: 500,
+                    namespace: "callbacks",
+                    pager: true,
+                });
+            });
+        </script>
+        <div class="slider">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider">
+                    <% if(noticias != null){ %>
+                    <% noticias.forEach(function(noticia){ %>
+                    <li>
+                        <div class="banner1"
+                             style="background: url(http://res.cloudinary.com/hlrpvlno9/image/upload/v1446942169/<%= noticia.img %>) no-repeat 0px 0px; ">
+                            <div class="banner-grids">
+                                <div class="banner-text">
+
+                                    <div class="info-box-slide info-box bg-yellow">
+                                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text"><%= noticia.category %></span>
+                                        </div><!-- /.info-box-content -->
+                                    </div>
+
+                                    <div class="bnr-info">
+                                        <h1> <%= noticia.title %></h1>
+                                        <p><%= noticia.sub_title %></p>
+                                        <a href='/noticia/<%= noticia._id%>'>Leia mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <% }) %>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <!----->
+    </div>
+</div>
+
+<!--content-->
+<div class="content">
+
+    <div class="container">
+
+        <!-- Conteúdo do Blog -->
+        <div class="content-left">
+
+            <% if(noticias != null){ %>
+            <% noticias.forEach(function(noticia){ %>
+
+            <!-- Inicio Lista de Notícias -->
+            <div class="sec_1">
+                <div class="sec_1 grids">
+                    <div class="post6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="http://res.cloudinary.com/hlrpvlno9/image/upload/v1446942169/<%= noticia.img %>"
+                                     class="img-responsive post6-pic-img" alt="">
+                            </div>
+
+                            <div class=" col-md-6 post6-pic-info">
+
+                                <div class="info-box bg-yellow">
+                                    <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><%= noticia.category %></span>
+                                    </div><!-- /.info-box-content -->
+                                </div>
+
+                                <h3><a href='/noticia/<%= noticia._id%>'><%= noticia.title %></a></h3>
+                                <p><%= noticia.sub_title %></p>
+                                <div class="comments cmnt3">
+                                    <ul>
+                                        <li><a href="#"><span class="glyphicon glyphicon-comment"
+                                                              aria-hidden="true"></span> <%= noticia.comments.length %>
+                                            </a>
+                                        </li>
+                                        <li><span class="glyphicon glyphicon-eye-open"
+                                                  aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
+                                        <li><span class="glyphicon glyphicon-time"
+                                                  aria-hidden="true"></span><%= noticia.date %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br/>
+                </div>
+            </div>
+            <!-- Fim Lista de Notícias -->
+            <% })}else{  %>
+
+            <!-- Inicio Lista de Noticias Vazio  -->
+            <div class="sec_1">
+                <div class="sec_1 grids">
+                    <div class="post6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="/images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
+                            </div>
+
+                            <div class="col-md-6 post6-pic-info post6-pic-vazio">
+
+                                <h1>Sua busca não retornou resultados</h1>
+                                <div class="bnr-info">
+                                    <a href="/">Limpar pesquisa</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br/>
+                </div>
+            </div>
+            <!-- Fim Post 1 -->
+            <%}%>
+
+        </div>
+        <!-- Fim Conteúdo do Blog -->
+
+        <!----->
+
+        <!-- Barra Lateral -->
+        <div class="content-right">
+
+            <!-- Inicio Mais Lidos -->
+            <section class="sky-form">
+                <h4>Mais lidas</h4>
+
+                <% if(maisLidas != null){ %>
+                <% maisLidas.forEach(function(noticia){ %>
+
+                <div class="post-grid1">
+                    <div class="post-pic">
+                        <img src="http://res.cloudinary.com/hlrpvlno9/image/upload/v1446942169/<%= noticia.img %>"
+                             class="img-responsive" alt="">
+                    </div>
+                    <div class="post-pic-text">
+                        <h5><a href="#"><%= noticia.title %></a></h5>
+                        <p><%= noticia.sub_title %></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <% }) %>
+                <% } %>
+            </section>
+
+            <!-- Fim Mais Lidos -->
+
+            <!-- Inicio Randon Post -->
+            <div class="followers-sec">
+                <section class="sky-form">
+                    <h4>follow heroes</h4>
+                    <div class="row row1 scroll-pane">
+                        <!--   <div class="col col-4"> -->
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/23.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">Gordon flash</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="5" class="css-checkbox5" type="checkbox">
+										 <label for="5" class="css-label5"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/17.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">Harley Quinn</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="6" class="css-checkbox6" type="checkbox">
+										 <label for="6" class="css-label6"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/18.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">The Green Lantern</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="7" class="css-checkbox7" type="checkbox">
+										 <label for="7" class="css-label7"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/19.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">Superman</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="8" class="css-checkbox8" type="checkbox">
+										 <label for="8" class="css-label8"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/20.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">Joker</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="9" class="css-checkbox9" type="checkbox">
+										 <label for="9" class="css-label9"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="follow-grid">
+                            <div class="flw-pic">
+                                <img src="/images/21.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h3 class="folw-name">Hawkgirl</h3>
+                            <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="10" class="css-checkbox10" type="checkbox">
+										 <label for="10" class="css-label10"> </label>
+										 </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </section>
+            </div>
+            <!-- Fim Randon Post -->
+
+            <div class="clearfix"></div>
+            <!---->
+            <div class="gallery">
+                <h3>New pictures from game Injasties</h3>
+                <div class="comments cmnt3 gm-cmnt">
+                    <ul>
+                        <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 32</a></li>
+                        <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 1245</li>
+                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Yesterday</li>
+                    </ul>
+                </div>
+            </div>
+            <!---->
+            <div class="joker">
+
+                <div class="joker-hdr">
+                    <h3>Joker</h3>
+                    <img src="/images/jkr.png" class="img-responsive" alt=""/>
+                </div>
+                <div class="joker-info">
+                    <h5>23 february</h5>
+                    <div class="joker-cmnt">
+                        <h4><img src="/images/smile1.png" alt=""/>Hello Flash!</h4>
+                        <h3>Joker, you so terrible today.What happened?<img src="/images/smile2.png" alt=""/></h3>
+                        <h4>Today I was not so good</h4>
+                        <h3>With your work hard to<span>stay in such a positive...</span></h3>
+                        <form>
+                            <textarea placeholder="Message" required=""></textarea>
+                            <button class="btn1 btn-1 btn-1b"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!---->
+            <div class="download">
+                <div class="dwnld-grids">
+                    <div class="dwnld-pic">
+                        <img src="/images/dwnld.png" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="dwnld-pic-info">
+                        <h3>New images document</h3>
+                        <p>File with test info about all game images</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!---->
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Fim Barra Lateral -->
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+
+
