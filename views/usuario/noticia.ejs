@@ -58,7 +58,7 @@
 
                         <div class="row">
                             <div class=" col-md-12">
-                                <div class="conteudo_noticia">
+                                <div id="noticiaConteudo" class="conteudo_noticia">
                                     <p><%= noticia.content %></p>
                                 </div>
                             </div>
@@ -397,4 +397,13 @@
     </div>
 </div>
 
+<script>
+    function codeAddress() {
+        var content = $("#noticiaConteudo").text();
+        $("#noticiaConteudo").html(content);
+    }
+    window.onload = codeAddress;
+
+
+</script>
 

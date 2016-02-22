@@ -27,7 +27,7 @@
                         <h3 class="box-title">Cadastrar</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form method="post" action="/admin/post/cadastrar_post" enctype="multipart/form-data">
+                    <form id="novaNoticia" name="novaNoticia" method="post" action="/admin/post/cadastrar_post" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="labelTitulo">Título</label>
@@ -63,8 +63,33 @@
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Corpo da notícia</label>
-                                <textarea id="inputPost" name="inputPost" class="form-control" rows="3"
+                                <textarea  id="inputPost" name="inputPost" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <!-- Caixa de edição -->
+                            <div class="CaixaEdicao">
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Conteúdo </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button class="btn btn-info btn-sm" data-widget="collapse"
+                                                    data-toggle="tooltip"
+                                                    title="Collapse"><i class="fa fa-minus"></i></button>
+                                            <button class="btn btn-info btn-sm" data-widget="remove"
+                                                    data-toggle="tooltip"
+                                                    title="Remove"><i class="fa fa-times"></i></button>
+                                        </div><!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+
+                                    <textarea id="editor" name="editor" rows="10" cols="80" onchange="teste();">
+                                                            This is my textarea to be replaced with CKEditor.
+                                    </textarea>
+
+                                    </div>
+                                </div><!-- /.box -->
                             </div>
 
                             <div class="form-group">
@@ -92,35 +117,9 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" onclick="submitForm();">Submit</button>
                         </div>
                     </form>
-
-                    <!-- Caixa de edição -->
-                    <div class="CaixaEdicao">
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <h3 class="box-title">Conteúdo </h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button class="btn btn-info btn-sm" data-widget="collapse"
-                                            data-toggle="tooltip"
-                                            title="Collapse"><i class="fa fa-minus"></i></button>
-                                    <button class="btn btn-info btn-sm" data-widget="remove"
-                                            data-toggle="tooltip"
-                                            title="Remove"><i class="fa fa-times"></i></button>
-                                </div><!-- /. tools -->
-                            </div><!-- /.box-header -->
-                            <div class="box-body pad">
-                                <form>
-                                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                                            This is my textarea to be replaced with CKEditor.
-                                    </textarea>
-                                </form>
-                            </div>
-                        </div><!-- /.box -->
-                    </div>
-
 
                 </div><!-- /.box -->
             </div><!--/.col -->
@@ -130,14 +129,22 @@
 
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+<script src="/javascripts/ckeditor.js"></script>
 
-<!--
 <script>
-    $(function () {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace('editor1');
-        //bootstrap WYSIHTML5 - text editor
-        $(".textarea").wysihtml5();
-    });
-</script>-->
+    initSample();
+
+    function  submitForm(){
+        var value = CKEDITOR.instances['editor'].getData();
+        document.getElementById("inputPost").value = value;
+        document.novaNoticia.submit();
+    }
+    function teste(){
+    var value = CKEDITOR.instances['editor'].getData();
+
+        function onChangeTest(textbox) {
+            alert("Value is " + textbox.value + "\n" + "Old Value is " + textbox.oldvalue);
+        }
+    }
+
+</script>
