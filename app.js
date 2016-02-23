@@ -42,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/noticia', routes);
+app.use('/gostei', routes);
+app.use('/ngostei', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/comentario', comentario);

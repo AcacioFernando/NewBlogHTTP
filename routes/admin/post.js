@@ -7,6 +7,7 @@ var multipartMiddleware = multipart();
 /*  Banco de dados */
 var mongoose = require('mongoose');
 var post = mongoose.model('post');
+var categoria = mongoose.model('categoria');
 
 
 var dateFormat = require('dateformat');
@@ -25,12 +26,26 @@ router.get('/', function (req, res) {
 
     console.log(req.session.logged);
 
+    var query_categoria = categoria.find();
+
     var usuario_logado = req.session.logged;
     console.log("Usuario logado " + req.session.logged);
 
     if (usuario_logado != null) {
 
-        res.render('admin/postCreate', {title: 'Administrador', usuario: usuario_logado});
+        query_categoria.exec(function (err, categorias) {
+            if (err) {
+                console.error("Error query categoria find: " + err);
+                res.redirect('usuario/error');
+
+            } else {
+                console.log("Categorias: ");
+                console.log(categorias);
+                res.render('admin/postCreate', {title: 'Administrador', categorias: categorias, usuario: usuario_logado});
+
+            }
+        });
+
     } else {
         res.redirect('/');
     }
@@ -162,6 +177,47 @@ router.post('/deletar_post', multipartMiddleware, function (req, res, next) {
             }
         });
 
+
+    } catch (err) {
+        console.log("Erro 2: " + err);
+        res.redirect('/admin');
+    }
+});
+
+router.post('/categoria', function (req, res, next) {
+
+    console.log("Cadastrar categoria");
+    var query_categoria = categoria.find();
+
+    try {
+
+        var usuario_logado = req.session.logged;
+        console.log("Usuario logado " + req.session.logged);
+
+        var nomeCategoria = req.body.inputCategoria;
+        console.log("Categoria: " + nomeCategoria);
+
+        categoria.create({
+            nome_categoria: nomeCategoria
+        }, function (err, user) {
+            if (err) {
+                error = err;
+                //redirecting to homepage
+                console.log("Erro 1: " + error);
+
+            }
+
+            query_categoria.exec(function (err, categorias) {
+                if (err) {
+                    console.error("Error query categoria find: " + err);
+                    res.redirect('usuario/error');
+
+                } else {
+                    res.render('admin/postCreate', {title: 'Administrador', categorias: categorias, usuario: usuario_logado});
+
+                }
+            });
+        });
 
     } catch (err) {
         console.log("Erro 2: " + err);

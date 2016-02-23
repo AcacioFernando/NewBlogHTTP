@@ -86,6 +86,14 @@
                                 <p><%= noticia.sub_title %></p>
                                 <div class="comments cmnt3">
                                     <ul>
+                                        <li><a href='/gostei/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-up"
+                                                              aria-hidden="true"></span> <%= noticia.gostei %>
+                                            </a>
+                                        </li>
+                                        <li><a href='/ngostei/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-down"
+                                                              aria-hidden="true"></span> <%= noticia.nao_gostei %>
+                                            </a>
+                                        </li>
                                         <li><a href="#"><span class="glyphicon glyphicon-comment"
                                                               aria-hidden="true"></span> <%= noticia.comments.length %>
                                             </a>

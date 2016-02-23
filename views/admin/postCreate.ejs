@@ -27,7 +27,8 @@
                         <h3 class="box-title">Cadastrar</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form id="novaNoticia" name="novaNoticia" method="post" action="/admin/post/cadastrar_post" enctype="multipart/form-data">
+                    <form id="novaNoticia" name="novaNoticia" method="post" action="/admin/post/cadastrar_post"
+                          enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="labelTitulo">Título</label>
@@ -43,28 +44,36 @@
                                                placeholder="Entre com o subtítulo da notícia">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Categoria</label>
                                         <select id="inputCategoria" name="inputCategoria" class="form-control select2"
                                                 style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
+
+                                            <% if(categorias != null){%>
+                                            <% categorias.forEach(function(categoria){ %>
+                                            <option> <%= categoria.nome_categoria %></option>
+                                            <% })} %>
                                         </select>
+
                                     </div><!-- /.form-group -->
+
                                 </div>
+
+                                <div class="col-md-1">
+                                    <label> &nbsp; </label>
+                                    <br/>
+                                    <button type="button" data-toggle="modal" data-target=".modal"
+                                            class="btn btn-info btn-sm"><i class="fa fa-plus-circle"></i></button>
+                                </div>
+
+
                             </div>
 
                             <!-- textarea -->
                             <div class="form-group">
-                                <label>Corpo da notícia</label>
-                                <textarea  id="inputPost" name="inputPost" class="form-control" rows="3"
-                                          placeholder="Enter ..."></textarea>
+                                <textarea id="inputPost" name="inputPost" class="form-control" rows="3"
+                                          style="display: none;"></textarea>
                             </div>
 
                             <!-- Caixa de edição -->
@@ -85,7 +94,7 @@
                                     <div class="box-body pad">
 
                                     <textarea id="editor" name="editor" rows="10" cols="80" onchange="teste();">
-                                                            This is my textarea to be replaced with CKEditor.
+                                        Entre com a notícia ...
                                     </textarea>
 
                                     </div>
@@ -97,15 +106,17 @@
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="input-group">
                                         <div class="form-control uneditable-input" data-trigger="fileinput">
-                                            <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>
+                                            <i class="glyphicon glyphicon-file fileinput-exists"></i> <span
+                                                    class="fileinput-filename"></span>
                                         </div>
                                         <div class="input-group-btn">
                                             <div class="btn btn-default btn-file">
-                                                <span class="fileinput-new" >Select</span>
+                                                <span class="fileinput-new">Select</span>
                                                 <span class="fileinput-exists">Change</span>
-                                                <input type="file" id="inputImagem" name="inputImagem" />
+                                                <input type="file" id="inputImagem" name="inputImagem"/>
                                             </div>
-                                            <button type="button" class="btn btn-default fileinput-exists" data-dismiss="fileinput" title="remove">
+                                            <button type="button" class="btn btn-default fileinput-exists"
+                                                    data-dismiss="fileinput" title="remove">
                                                 Remove
                                             </button>
                                         </div>
@@ -124,6 +135,28 @@
                 </div><!-- /.box -->
             </div><!--/.col -->
         </div>   <!-- /.row -->
+
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Nova categoria </h4>
+                    </div>
+                    <form method="post" action="/admin/post/categoria">>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="inputCategoria" name="inputCategoria"
+                                   placeholder="Entre com a nova categoria... ">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar categoria</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
@@ -134,13 +167,13 @@
 <script>
     initSample();
 
-    function  submitForm(){
+    function submitForm() {
         var value = CKEDITOR.instances['editor'].getData();
         document.getElementById("inputPost").value = value;
         document.novaNoticia.submit();
     }
-    function teste(){
-    var value = CKEDITOR.instances['editor'].getData();
+    function teste() {
+        var value = CKEDITOR.instances['editor'].getData();
 
         function onChangeTest(textbox) {
             alert("Value is " + textbox.value + "\n" + "Old Value is " + textbox.oldvalue);

@@ -223,5 +223,97 @@ router.post('/search', function (req, res) {
 
 });
 
+router.get('/gostei/:id', function (req, res) {
+
+    console.log("Gostei notícia");
+
+    var id = req.params.id;
+    console.log(id);
+    post.findOne({_id: id}, function (err, post) {
+        console.log(post);
+        if (!err) {
+            var number_gostei = post.gostei + 1;
+            post.gostei = number_gostei;
+            post.save();
+            console.log('Gostei ' + post.title + ' atualizado para ' + number_gostei);
+            res.redirect('/');
+        } else {
+            console.log('Erro ao cadastrar o gostei ' + post.title);
+            res.redirect('/');
+        }
+    });
+
+
+});
+
+router.get('/ngostei/:id', function (req, res) {
+
+    console.log("Não gostei notícia");
+
+    var id = req.params.id;
+    console.log(id);
+    post.findOne({_id: id}, function (err, post) {
+        console.log(post);
+        if (!err) {
+            var number_ngostei = post.nao_gostei + 1;
+            post.nao_gostei = number_ngostei;
+            post.save();
+            console.log('Gostei ' + post.title + ' atualizado para ' + number_ngostei);
+            res.redirect('/');
+        } else {
+            console.log('Erro ao cadastrar o gostei ' + post.title);
+            res.redirect('/');
+        }
+    });
+
+
+});
+
+router.get('/gostei_noticia/:id', function (req, res) {
+
+    console.log("Gostei notícia");
+
+    var id = req.params.id;
+    console.log(id);
+    post.findOne({_id: id}, function (err, post) {
+        console.log(post);
+        if (!err) {
+            var number_gostei = post.gostei + 1;
+            post.gostei = number_gostei;
+            post.save();
+            console.log('Gostei ' + post.title + ' atualizado para ' + number_gostei);
+            res.redirect('/noticia/'+id);
+        } else {
+            console.log('Erro ao cadastrar o gostei ' + post.title);
+            res.redirect('/noticia/'+id);
+        }
+    });
+
+
+});
+
+router.get('/ngostei_noticia/:id', function (req, res) {
+
+    console.log("Não gostei notícia");
+
+    var id = req.params.id;
+    console.log(id);
+    post.findOne({_id: id}, function (err, post) {
+        console.log(post);
+        if (!err) {
+            var number_ngostei = post.nao_gostei + 1;
+            post.nao_gostei = number_ngostei;
+            post.save();
+            console.log('Gostei ' + post.title + ' atualizado para ' + number_ngostei);
+            res.redirect('/noticia/'+id);
+        } else {
+            console.log('Erro ao cadastrar o gostei ' + post.title);
+            res.redirect('/noticia/'+id);
+        }
+    });
+
+
+});
+
 
 module.exports = router;

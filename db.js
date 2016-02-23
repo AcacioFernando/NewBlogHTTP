@@ -44,12 +44,17 @@ var usuarioSchema = new Schema({
     date: { type: String }
 });
 
+var categoriaSchema = new Schema({
+    id: ObjectId,
+    nome_categoria: { type: String },
+});
 
 
 
 var post = mongoose.model('post', postSchema);
 var comment = mongoose.model('comment', commentSchema);
 var usuario = mongoose.model('usuario', usuarioSchema);
+var categoria = mongoose.model('categoria', categoriaSchema);
 
 var db_url = process.env.MONGOLAB_URI  || "mongodb://localhost:27017/dbNewBlogHttp",
     db = mongoose.connect(db_url);
