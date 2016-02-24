@@ -26,9 +26,6 @@ var initSample = ( function() {
                 'Hello world!\n\n' +
                 'I\'m an instance of [url=http://ckeditor.com]CKEditor[/url].'
             );
-
-            var teste= editorElement.getHtml();
-            alert(teste);
         }
 
         // Depending on the wysiwygare plugin availability initialize classic or inline editor.

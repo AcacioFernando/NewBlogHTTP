@@ -4,7 +4,7 @@ var router = express.Router();
 /*  Banco de dados*/
 var mongoose = require('mongoose');
 var usuarios = mongoose.model('usuario');
-
+var post = mongoose.model('post');
 /* Format data*/
 var dateFormat = require('dateformat');
 
@@ -15,13 +15,24 @@ router.get('/', function (req, res) {
     console.log("Index admin 1123");
     var usuario_logado = req.session.logged;
     console.log("Usuario logado " + req.session.logged);
+    var query = post.find().limit(10);
 
-    if (usuario_logado != null) {
+    try {
+        if (usuario_logado != null) {
+            console.log("Usuario logado ");
 
-        console.log("Usuario logado ");
+            query.exec(function (err, noticias) {
+                if (err) {
+                    res.redirect('/');
+                }
+                res.render('admin/index', {title: 'Administrador', noticias: noticias, usuario: usuario_logado});
+            });
 
-        res.render('admin/index', {title: 'Administrador', usuario: usuario_logado});
-    }else{
+
+        } else {
+            res.redirect('/');
+        }
+    } catch (err) {
         res.redirect('/');
     }
 
@@ -104,13 +115,13 @@ router.post('/login', function (req, res) {
             if (usuario.admin_password == password) {
                 console.log('Logado com sucesso');
                 req.session.logged = usuario;
-                sess =usuario;
+                sess = usuario;
                 console.log(req.session.logged);
                 console.log('Passei aqui');
                 res.redirect('/admin');
             } else {
                 req.session.logged = null;
-                sess =null;
+                sess = null;
                 console.log(req.session.logged);
                 console.log('Passwords não confere:' + err);
                 res.redirect('/');
@@ -123,9 +134,9 @@ router.post('/login', function (req, res) {
 
 router.get('/logout', function (req, res) {
 
-    Console.log("Logout: "+ req.session.logged);
+    Console.log("Logout: " + req.session.logged);
 
-    req.session.logged= null;
+    req.session.logged = null;
     res.redirect('/');
 });
 module.exports = router;

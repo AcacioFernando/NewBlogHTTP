@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 body{
   margin:0;
   font-family: 'NotoSans-Regular';
-  background:#172123 url(http://4.bp.blogspot.com/-5wwTTtSbZSM/USADcWf4bKI/AAAAAAAADIg/1Rc1fObGFVk/s000/background.jpg) center 10px no-repeat;
+  background:#172123 url(http://res.cloudinary.com/hlrpvlno9/image/upload/v1456282134/background_zds8gg.jpg) center 10px no-repeat;
   padding:2em;
 }
 @font-face {
@@ -113,8 +113,8 @@ span.glyphicon.glyphicon-search:focus {
   width: 100%;
 }
 .navbar-default {
-  background-color: #111111;
-  border-color:#111111;
+  background-color: #172123;
+  border-color:#172123;
 }
 .navbar-default .navbar-nav > li > a {
   color: #fff;
@@ -131,7 +131,7 @@ span.glyphicon.glyphicon-search:focus {
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   color: #fff;
-  background-color:#111111;
+  background-color:#172123;
 }
 .dropdown li a{
   border-left:none;
@@ -425,7 +425,6 @@ ul.callbacks_tabs.callbacks1_tabs {
 .comments{
   margin-top:1em;
   padding-top:0.7em;
-  border-top:1px solid rgba(238, 238, 238, 0.21);
 }
 .comments ul li{
   display:inline-block;
@@ -521,8 +520,9 @@ ul.callbacks_tabs.callbacks1_tabs {
   margin-right: 1%;
 }
 .post6{
-  background:#111111;
+  background:#172123;
   border-radius: 15px;
+  border: 1px solid #333;
 }
 .post6-pic{
   float:left;
@@ -563,7 +563,6 @@ ul.callbacks_tabs.callbacks1_tabs {
   font-family: 'NotoSerif';
 }
 .cmnt3{
-  border-top: 1px solid rgba(238, 238, 238, 0.18);
   text-align:center;
 }
 .cmnt3 ul li{
@@ -636,7 +635,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   float:left;
   width:49%;
   margin-left:1%;
-  background:#111111;
+  background:#172123;
   padding:0.8em 1em;
   border-radius:5px;
 }
@@ -711,7 +710,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 
 .posts-grids{
-  background:#111111;
+  background:#172123;
   padding:2em 1em 1em;
   border-radius:6px;
 }
@@ -728,9 +727,9 @@ ul.callbacks_tabs.callbacks1_tabs {
   float:left;
 }
 .post-grid1 {
-  background: #111;
+  background: #172123;
   padding: 1.5em 5px;
-  border-top:1px solid rgba(255, 255, 255, 0.26);
+  border: 1px solid #333;
 }
 .post-pic-text{
   width: 70%;
@@ -858,7 +857,7 @@ input[type=checkbox].css-checkbox10 + label.css-label10{
   position: absolute;
   outline: none;
   padding: 0.5em 0.5em 0 1em!important;
-  background: #111;
+  background: #172123;
   width: 319px!important;
 }
 .jspVerticalBar{
@@ -1095,7 +1094,7 @@ button.btn1.btn-1.btn-1b {
 }
 .filter{
   margin-top:1em;
-  background:#111111;
+  background:#172123;
   padding:1.5em;
   border-radius: 5px;
 }
@@ -1141,7 +1140,7 @@ li.frm {
 }
 input#amount {
   width: 53%;
-  background: #111111;
+  background: #172123;
   border-radius: 5px;
   color: #898989;
   background: #fff;
@@ -1352,7 +1351,7 @@ input[type=checkbox].css-checkbox4:checked + label.css-label4{
   width:28%;
   float:right;
   padding: 1em;
-  background:#111111;
+  background:#172123;
   border-radius: 5px;
 }
 .tab-text h3 a {
@@ -1371,7 +1370,7 @@ i.resp-tab-item.lost {
   width:75%;
   margin:0 auto 0.7em;
   outline: none;
-  border:2px solid #111111;
+  border:2px solid #172123;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
@@ -2475,7 +2474,7 @@ footer .footer-col {
 }
 footer .footer-below {
   padding: 25px 0;
-  background-color: #111;
+  background-color: #172123;
 }
 .btn-social {
   display: inline-block;
@@ -2717,3 +2716,17 @@ padding-bottom: 10px;
 .add-categoria{
   margin-top: 28px;
 }
+
+.post6 img {
+  padding: 2px;
+  border: 1px solid #2E414E;
+  background: #2E414A;
+}
+
+.conteudo_noticia img{
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
+
