@@ -11,7 +11,7 @@
         <!-- Conteúdo do Blog -->
         <div class="content-left">
 
-            <% if(noticias != null){ %>
+            <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
             <% noticias.forEach(function(noticia){ %>
 
             <!-- Inicio Lista de Notícias -->

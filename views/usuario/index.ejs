@@ -18,8 +18,13 @@
         <div class="slider">
             <div class="callbacks_container">
                 <ul class="rslides" id="slider">
-                    <% if(noticias != null){ %>
-                    <% noticias.forEach(function(noticia){ %>
+                    <% if(noticias != null){
+                        var contador = 0;
+                    %>
+                    <%
+                    try{
+                    noticias.forEach(function(noticia){
+                    %>
                     <li>
                         <div class="banner1"
                              style="background: url(http://res.cloudinary.com/hlrpvlno9/image/upload/v1446942169/<%= noticia.img %>) no-repeat 0px 0px; ">
@@ -36,14 +41,23 @@
                                     <div class="bnr-info">
                                         <h1> <%= noticia.title %></h1>
                                         <p><%= noticia.sub_title %></p>
-                                        <a href='/noticia/<%= noticia._id%>'>Leia mais</a>
+                                        <a href='/noticia/<%= noticia._id %>'>Leia mais</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
 
-                    <% }) %>
+                    <%
+                        contador++;
+                        if (contador == 3) {
+                            throw new Error(); // Simulated break
+                        }
+
+                    })
+                    } catch (e) {
+                    }
+                    %>
                     <% } %>
                 </ul>
             </div>
@@ -60,7 +74,7 @@
         <!-- Conteúdo do Blog -->
         <div class="content-left">
 
-            <% if(noticias != null){ %>
+            <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
             <% noticias.forEach(function(noticia){ %>
 
             <!-- Inicio Lista de Notícias -->
@@ -82,16 +96,18 @@
                                     </div><!-- /.info-box-content -->
                                 </div>
 
-                                <h3><a href='/noticia/<%= noticia._id%>'><%= noticia.title %></a></h3>
+                                <h3><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h3>
                                 <p><%= noticia.sub_title %></p>
                                 <div class="comments cmnt3">
                                     <ul>
-                                        <li><a href='/gostei/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-up"
-                                                              aria-hidden="true"></span> <%= noticia.gostei %>
+                                        <li><a href='/gostei/<%= noticia._id %>'><span
+                                                        class="gostei glyphicon glyphicon-thumbs-up"
+                                                        aria-hidden="true"></span> <%= noticia.gostei %>
                                             </a>
                                         </li>
-                                        <li><a href='/ngostei/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-down"
-                                                              aria-hidden="true"></span> <%= noticia.nao_gostei %>
+                                        <li><a href='/ngostei/<%= noticia._id %>'><span
+                                                        class="gostei glyphicon glyphicon-thumbs-down"
+                                                        aria-hidden="true"></span> <%= noticia.nao_gostei %>
                                             </a>
                                         </li>
                                         <li><a href="#"><span class="glyphicon glyphicon-comment"
@@ -113,7 +129,7 @@
                 </div>
             </div>
             <!-- Fim Lista de Notícias -->
-            <% })}else{  %>
+            <% })}else{ %>
 
             <!-- Inicio Lista de Noticias Vazio  -->
             <div class="sec_1">
@@ -140,7 +156,7 @@
                 </div>
             </div>
             <!-- Fim Post 1 -->
-            <%}%>
+            <% } %>
 
         </div>
         <!-- Fim Conteúdo do Blog -->
