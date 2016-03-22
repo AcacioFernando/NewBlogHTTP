@@ -333,9 +333,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 /* Fim do Slider Baner */
 
 /*--content--*/
-.banner{
-  margin-top:2em;
-}
+
 .content{
   margin-top:2em;
 }
@@ -2729,4 +2727,11 @@ padding-bottom: 10px;
   max-width: 100%;
   height: auto;
 }
+.conteudo{
+  margin-top: 2em;
+}
 
+.banner{
+  margin-bottom: 2em;
+
+}

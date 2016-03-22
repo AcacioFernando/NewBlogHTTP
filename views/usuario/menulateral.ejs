@@ -1,0 +1,142 @@
+<!-- Barra Lateral -->
+<div class="content-right">
+
+    <!-- Inicio Mais Lidos -->
+    <section class="sky-form">
+        <h4>Mais lidas</h4>
+
+        <% if(maisLidas != null){ %>
+        <% maisLidas.forEach(function(noticia){ %>
+
+        <div class="post-grid1">
+            <div class="post-pic">
+                <img src="<%= noticia.img %>"
+                     class="img-responsive" alt="">
+            </div>
+            <div class="post-pic-text">
+                <h5><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h5>
+                <p><%= noticia.sub_title %></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <% }) %>
+        <% } %>
+    </section>
+
+    <!-- Fim Mais Lidos -->
+
+    <!-- Inicio Randon Post -->
+    <div class="followers-sec">
+        <section class="sky-form">
+            <h4>follow heroes</h4>
+            <div class="row row1 scroll-pane">
+                <!--   <div class="col col-4"> -->
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/23.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">Gordon flash</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="5" class="css-checkbox5" type="checkbox">
+										 <label for="5" class="css-label5"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/17.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">Harley Quinn</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="6" class="css-checkbox6" type="checkbox">
+										 <label for="6" class="css-label6"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/18.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">The Green Lantern</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="7" class="css-checkbox7" type="checkbox">
+										 <label for="7" class="css-label7"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/19.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">Superman</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="8" class="css-checkbox8" type="checkbox">
+										 <label for="8" class="css-label8"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/20.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">Joker</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="9" class="css-checkbox9" type="checkbox">
+										 <label for="9" class="css-label9"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="follow-grid">
+                    <div class="flw-pic">
+                        <img src="/images/21.png" class="img-responsive" alt=""/>
+                    </div>
+                    <h3 class="folw-name">Hawkgirl</h3>
+                    <div class="flwr">
+										 <span class="col_checkbox">
+										 <input id="10" class="css-checkbox10" type="checkbox">
+										 <label for="10" class="css-label10"> </label>
+										 </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- </div> -->
+            </div>
+        </section>
+    </div>
+    <!-- Fim Randon Post -->
+
+    <div class="clearfix"></div>
+    <!---->
+    <div class="gallery">
+        <h3>New pictures from game Injasties</h3>
+        <div class="comments cmnt3 gm-cmnt">
+            <ul>
+                <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 32</a></li>
+                <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 1245</li>
+                <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Yesterday</li>
+            </ul>
+        </div>
+    </div>
+    <!---->
+
+    <div class="clearfix"></div>
+    <!---->
+
+
+</div>
+<!-- Fim Barra Lateral -->
+
+<div class="clearfix"></div>
+
+

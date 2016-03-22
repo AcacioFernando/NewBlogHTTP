@@ -1,0 +1,96 @@
+<% layout('layout') -%>
+
+
+<!-- Conteúdo do Blog -->
+<div class="content-left">
+
+    <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
+    <% noticias.forEach(function(noticia){ %>
+
+    <!-- Inicio Lista de Notícias -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="<%= noticia.img %>"
+                             class="img-responsive post6-pic-img" alt="">
+                    </div>
+
+                    <div class=" col-md-6 post6-pic-info">
+
+                        <div class="info-box bg-yellow">
+                            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text"><%= noticia.category %></span>
+                            </div><!-- /.info-box-content -->
+                        </div>
+
+                        <h3><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h3>
+                        <p><%= noticia.sub_title %></p>
+                        <div class="comments cmnt3">
+                            <ul>
+                                <li><a href='/gostei/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-up"
+                                                aria-hidden="true"></span> <%= noticia.gostei %>
+                                    </a>
+                                </li>
+                                <li><a href='/ngostei/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-down"
+                                                aria-hidden="true"></span> <%= noticia.nao_gostei %>
+                                    </a>
+                                </li>
+                                <li><a href="#"><span class="glyphicon glyphicon-comment"
+                                                      aria-hidden="true"></span> <%= noticia.comments.length %>
+                                    </a>
+                                </li>
+                                <li><span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
+                                <li><span class="glyphicon glyphicon-time"
+                                          aria-hidden="true"></span><%= noticia.date %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+        </div>
+    </div>
+    <!-- Fim Lista de Notícias -->
+    <% })}else{ %>
+
+    <!-- Inicio Lista de Noticias Vazio  -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="/images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
+                    </div>
+
+                    <div class="col-md-6 post6-pic-info post6-pic-vazio">
+
+                        <h1>Sua busca não retornou resultados</h1>
+                        <div class="bnr-info">
+                            <a href="/">Limpar pesquisa</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+        </div>
+    </div>
+    <!-- Fim Post 1 -->
+    <% } %>
+
+</div>
+<!-- Fim Conteúdo do Blog -->
+
+
+
+

@@ -315,13 +315,21 @@ router.get('/categoria/:nomeCategoria', function (req, res) {
                 }
                 console.log('valor resultado categoria: ');
                 console.log(results[0]);
-                res.render('usuario/index', {
-                    title: 'Hero',
-                    noticias: results[0],
-                    categorias: results[1],
-                    maisLidas: results[2],
-                    usuario: usuario_logado
-                });
+                if(!results[0]) {
+                    res.render('usuario/pesquisa', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }else{
+                    res.render('usuario/pesquisavazia', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }
             });
 
     } catch (err) {
@@ -392,6 +400,133 @@ router.post('/comentario/:id', function (req, res) {
 
 });
 
+router.post('/busca', function (req, res) {
+
+    console.log("Index busca");
+    var maisLidas = null;
+    var srch = req.params.value;
+
+    console.log(new RegExp(srch));
+
+    try {
+        async.parallel([
+                // Find all notícias
+                function (callback) {
+                    var query = post.find({content: new RegExp(srch)}).limit(5);
+                    query.exec(function (err, noticias) {
+                        if (err) {
+                            callback(err);
+                        }
+                        callback(null, noticias);
+                    });
+                },
+
+                //Find all categorias
+                function (callback) {
+                    var query = categoria.find();
+                    query.exec(function (err, categoria) {
+                        if (err) {
+                            callback(err);
+                        }
+
+                        callback(null, categoria);
+                    });
+                },
+
+                //Find all mais lidos
+                function (callback) {
+                    var query = post.find().sort({numero_clicks: -1}).limit(5);
+                    query.exec(function (err, noticiasMaisLidas) {
+                        if (err) {
+                            callback(err);
+                        }
+                        callback(null, noticiasMaisLidas);
+                    });
+                }
+            ],
+
+            //Compute all results
+            function (err, results) {
+                if (err) {
+                    console.log(err);
+                    res.redirect('/');
+                }
+
+                if (results == null || results[0] == null) {
+                    res.redirect('/');
+                }
+                console.log('valor resultado busca: ');
+                console.log(results[0]);
+                if(!results[0]) {
+                    res.render('usuario/pesquisa', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }else{
+                    res.render('usuario/pesquisavazia', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }
+            });
+
+    } catch (err) {
+        console.log("Falha ao abrir : " + err);
+        res.redirect('/usuario/error');
+    }
+
+    /*
+
+
+     var query_maisLidas = post.find().sort({numero_clicks: -1}).limit(5);
+
+     post.find({content: new RegExp(srch)}, function (err, noticias) {
+     if (err) {
+     console.log("Erro busca :" + noticias);
+     return console.error(err);
+     } else if (noticias.length != []) {
+
+     console.log("Tudo certo" + noticias);
+
+     query_maisLidas.exec(function (err, maisLidasNoticias) {
+     if (err) {
+     console.error("Error query maisLidos find: " + err);
+     res.redirect('usuario/error');
+     } else {
+     res.render('usuario/index', {
+     title: 'Hero',
+     noticias: noticias,
+     maisLidas: maisLidasNoticias,
+     usuario: usuario_logado
+     });
+     }
+     });
+     } else {
+
+     console.log("Vazio: " + noticias);
+
+     query_maisLidas.exec(function (err, maisLidasNoticias) {
+     if (err) {
+     console.error("Error query maisLidos find: " + err);
+     res.redirect('usuario/error');
+     } else {
+     res.render('usuario/index', {
+     title: 'Hero',
+     noticias: null,
+     maisLidas: maisLidasNoticias,
+     usuario: usuario_logado
+     });
+     }
+     });
+     }
+     });*/
+
+});
+
 router.post('/search', function (req, res) {
 
     console.log("Index search");
@@ -450,13 +585,21 @@ router.post('/search', function (req, res) {
                 }
                 console.log('valor resultado busca: ');
                 console.log(results[0]);
-                res.render('usuario/index', {
-                    title: 'Hero',
-                    noticias: results[0],
-                    categorias: results[1],
-                    maisLidas: results[2],
-                    usuario: usuario_logado
-                });
+                if(!results[0]) {
+                    res.render('usuario/pesquisa', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }else{
+                    res.render('usuario/pesquisavazia', {
+                        title: 'Hero',
+                        noticias: results[0],
+                        categorias: results[1],
+                        maisLidas: results[2]
+                    });
+                }
             });
 
     } catch (err) {
