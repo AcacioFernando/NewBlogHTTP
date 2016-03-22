@@ -1,375 +1,228 @@
 <% layout('layout') -%>
 
-<!--banner-->
+
+<!-- Conteúdo do Blog -->
+<div class="content-left">
+
+    <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
+    <% noticias.forEach(function(noticia){ %>
+
+    <!-- Inicio Lista de Notícias -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post6-pic-noticia">
+
+                            <div class="info-box bg-yellow">
+                                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text"><%= noticia.category %></span>
+                                </div><!-- /.info-box-content -->
+                            </div>
+
+                            <h3><a href="#"><%= noticia.title %></a></h3>
+
+                            <p><%= noticia.sub_title %></p>
+                        </div>
+
+                        <img src="<%= noticia.img %>"
+                             class="img-responsive post6-pic-img" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-12">
+
+                        <div class="comments cmnt3">
+                            <ul>
+                                <li><a href='/gostei_noticia/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-up"
+                                                aria-hidden="true"></span> <%= noticia.gostei %>
+                                    </a>
+                                </li>
+                                <li><a href='/ngostei_noticia/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-down"
+                                                aria-hidden="true"></span> <%= noticia.nao_gostei %>
+                                    </a>
+                                </li>
+                                <li><a href="#"><span class="glyphicon glyphicon-comment"
+                                                      aria-hidden="true"></span> <%= noticia.comments.length %>
+                                    </a>
+                                </li>
+                                <li><span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
+                                <li><span class="glyphicon glyphicon-time"
+                                          aria-hidden="true"></span><%= noticia.date %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" col-md-12">
+                        <div id="noticiaConteudo" class="conteudo_noticia">
+                            <p><%= noticia.content %></p>
+                        </div>
+                    </div>
+                </div>
 
 
-<!--content-->
-<div class="content">
+                <div class="post6-comentarios">
 
-    <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="page-header">Comentários</h2>
+                            <section class="comment-list">
 
-        <!-- Conteúdo do Blog -->
-        <div class="content-left">
+                                <% if(noticia.comments != null || noticia.comments != []){
+                                    var aux = 0;
+                                    var comentarios = noticia.comments;
+                                comentarios.forEach(function(comentario){
 
-            <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
-            <% noticias.forEach(function(noticia){ %>
+                                if(aux % 2 == 0){
+                                %>
 
-            <!-- Inicio Lista de Notícias -->
-            <div class="sec_1">
-                <div class="sec_1 grids">
-                    <div class="post6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="post6-pic-noticia">
-
-                                    <div class="info-box bg-yellow">
-                                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text"><%= noticia.category %></span>
-                                        </div><!-- /.info-box-content -->
+                                <!-- First Comment -->
+                                <article class="row">
+                                    <div class="col-md-2 col-sm-2 hidden-xs">
+                                        <figure class="thumbnail">
+                                            <img class="img-responsive"
+                                                 src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg"/>
+                                            <figcaption class="text-center"><%= comentario.name %></figcaption>
+                                        </figure>
                                     </div>
-
-                                    <h3><a href="#"><%= noticia.title %></a></h3>
-
-                                    <p><%= noticia.sub_title %></p>
-                                </div>
-
-                                <img src="<%= noticia.img %>"
-                                     class="img-responsive post6-pic-img" alt="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col-md-12">
-
-                                <div class="comments cmnt3">
-                                    <ul>
-                                        <li><a href='/gostei_noticia/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-up"
-                                                                                      aria-hidden="true"></span> <%= noticia.gostei %>
-                                            </a>
-                                        </li>
-                                        <li><a href='/ngostei_noticia/<%= noticia._id%>'><span class="gostei glyphicon glyphicon-thumbs-down"
-                                                                                       aria-hidden="true"></span> <%= noticia.nao_gostei %>
-                                            </a>
-                                        </li>
-                                        <li><a href="#"><span class="glyphicon glyphicon-comment"
-                                                              aria-hidden="true"></span> <%= noticia.comments.length %>
-                                            </a>
-                                        </li>
-                                        <li><span class="glyphicon glyphicon-eye-open"
-                                                  aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
-                                        <li><span class="glyphicon glyphicon-time"
-                                                  aria-hidden="true"></span><%= noticia.date %></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class=" col-md-12">
-                                <div id="noticiaConteudo" class="conteudo_noticia">
-                                    <p><%= noticia.content %></p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="post6-comentarios">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2 class="page-header">Comentários</h2>
-                                    <section class="comment-list">
-
-                                        <% if(noticia.comments != null || noticia.comments != []){
-                                            var aux = 0;
-                                            var comentarios = noticia.comments;
-                                        comentarios.forEach(function(comentario){
-
-                                        if(aux % 2 == 0){
-                                        %>
-
-                                        <!-- First Comment -->
-                                        <article class="row">
-                                            <div class="col-md-2 col-sm-2 hidden-xs">
-                                                <figure class="thumbnail">
-                                                    <img class="img-responsive"
-                                                         src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg"/>
-                                                    <figcaption class="text-center"><%= comentario.name %></figcaption>
-                                                </figure>
-                                            </div>
-                                            <div class="col-md-10 col-sm-10">
-                                                <div class="panel panel-default arrow left">
-                                                    <div class="panel-body">
-                                                        <header class="text-left">
-                                                            <div class="comment-user"><i class="fa fa-user"></i>
-                                                                <%= comentario.name %>
-                                                            </div>
-                                                            <time class="comment-date" datetime="16-12-2014 01:05"><i
-                                                                        class="fa fa-clock-o"></i><%= comentario.date %>
-                                                            </time>
-                                                        </header>
-                                                        <div class="comment-post">
-                                                            <p>
-                                                                <%= comentario.comment %>
-                                                            </p>
-                                                        </div>
-
+                                    <div class="col-md-10 col-sm-10">
+                                        <div class="panel panel-default arrow left">
+                                            <div class="panel-body">
+                                                <header class="text-left">
+                                                    <div class="comment-user"><i class="fa fa-user"></i>
+                                                        <%= comentario.name %>
                                                     </div>
+                                                    <time class="comment-date" datetime="16-12-2014 01:05"><i
+                                                                class="fa fa-clock-o"></i><%= comentario.date %>
+                                                    </time>
+                                                </header>
+                                                <div class="comment-post">
+                                                    <p>
+                                                        <%= comentario.comment %>
+                                                    </p>
                                                 </div>
+
                                             </div>
-                                        </article>
+                                        </div>
+                                    </div>
+                                </article>
 
-                                        <% }else{ %>
-                                        <!-- Third Comment -->
-                                        <article class="row">
-                                            <div class="col-md-10 col-sm-10">
-                                                <div class="panel panel-default arrow right">
-                                                    <div class="panel-body">
-                                                        <header class="text-right">
-                                                            <div class="comment-user"><i class="fa fa-user"></i>
-                                                                <%= comentario.name %>
-                                                            </div>
-                                                            <time class="comment-date" datetime="16-12-2014 01:05"><i
-                                                                        class="fa fa-clock-o"></i> <%= comentario.date %>
-                                                            </time>
-                                                        </header>
-                                                        <div class="comment-post">
-                                                            <p>
-                                                                <%= comentario.comment %>
-                                                            </p>
-                                                        </div>
-
+                                <% }else{ %>
+                                <!-- Third Comment -->
+                                <article class="row">
+                                    <div class="col-md-10 col-sm-10">
+                                        <div class="panel panel-default arrow right">
+                                            <div class="panel-body">
+                                                <header class="text-right">
+                                                    <div class="comment-user"><i class="fa fa-user"></i>
+                                                        <%= comentario.name %>
                                                     </div>
+                                                    <time class="comment-date" datetime="16-12-2014 01:05"><i
+                                                                class="fa fa-clock-o"></i> <%= comentario.date %>
+                                                    </time>
+                                                </header>
+                                                <div class="comment-post">
+                                                    <p>
+                                                        <%= comentario.comment %>
+                                                    </p>
                                                 </div>
+
                                             </div>
-                                            <div class="col-md-2 col-sm-2 hidden-xs">
-                                                <figure class="thumbnail">
-                                                    <img class="img-responsive"
-                                                         src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg"/>
-                                                    <figcaption class="text-center"><%= comentario.name %></figcaption>
-                                                </figure>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 hidden-xs">
+                                        <figure class="thumbnail">
+                                            <img class="img-responsive"
+                                                 src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg"/>
+                                            <figcaption class="text-center"><%= comentario.name %></figcaption>
+                                        </figure>
+                                    </div>
+                                </article>
+
+                                <% }
+                                    aux = aux + 1;
+                                })} %>
+
+                                <!-- Comments Form -->
+                                <div class="well">
+                                    <h3>
+                                        <icon class=" balao-comentario glyphicon glyphicon-comment"></icon>
+                                        Deixe seu comentário:
+                                    </h3>
+                                    <form method="post" action="/comentario/<%= noticia._id %>">
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <input name="userComentario" id="userComentario"
+                                                       placeholder="Digite seu nome" type="text"
+                                                       class="form-control">
                                             </div>
-                                        </article>
 
-                                        <% }
-                                            aux = aux + 1;
-                                        })} %>
-
-                                        <!-- Comments Form -->
-                                        <div class="well">
-                                            <h3>
-                                                <icon class=" balao-comentario glyphicon glyphicon-comment"></icon>
-                                                Deixe seu comentário:
-                                            </h3>
-                                            <form method="post" action="/comentario/<%= noticia._id %>">
-                                                <div class="row">
-                                                    <div class="col-md-12 form-group">
-                                                        <input name="userComentario" id="userComentario"
-                                                               placeholder="Digite seu nome" type="text"
-                                                               class="form-control">
-                                                    </div>
-
-                                                    <div class="col-md-12 form-group">
+                                            <div class="col-md-12 form-group">
                                                         <textarea name="textComentario" id="textComentario"
                                                                   placeholder="Participe da discurssão..."
                                                                   class="form-control" rows="3"></textarea>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <icon class="glyphicon glyphicon-envelope"></icon>
-                                                    Enviar
-                                                </button>
-                                            </form>
+                                            </div>
                                         </div>
-
-                                    </section>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <br/>
-                </div>
-            </div>
-            <!-- Fim Lista de Notícias -->
-            <% })}else{ %>
-
-            <!-- Inicio Lista de Noticias Vazio  -->
-            <div class="sec_1">
-                <div class="sec_1 grids">
-                    <div class="post6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
-                            </div>
-
-                            <div class="col-md-6 post6-pic-info post6-pic-vazio">
-
-                                <h1>Sua busca não retornou resultados</h1>
-                                <div class="bnr-info">
-                                    <a href="/">Limpar pesquisa</a>
+                                        <button type="submit" class="btn btn-primary">
+                                            <icon class="glyphicon glyphicon-envelope"></icon>
+                                            Enviar
+                                        </button>
+                                    </form>
                                 </div>
 
-                            </div>
+                            </section>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                    <div class="clearfix"></div>
-                    <br/>
+
                 </div>
+                <div class="clearfix"></div>
             </div>
-            <!-- Fim Post 1 -->
-            <% } %>
-
-        </div>
-        <!-- Fim Conteúdo do Blog -->
-
-        <!----->
-
-        <!-- Barra Lateral -->
-        <div class="content-right">
-
-            <!-- Inicio Mais Lidos -->
-            <section class="sky-form">
-                <h4>Mais lidas</h4>
-
-                <% if(maisLidas != null){ %>
-                <% maisLidas.forEach(function(noticia){ %>
-
-                <div class="post-grid1">
-                    <div class="post-pic">
-                        <img src="<%= noticia.img %>"
-                             class="img-responsive" alt="">
-                    </div>
-                    <div class="post-pic-text">
-                        <h5><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h5>
-                        <p><%= noticia.sub_title %></p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-                <% }) %>
-                <% } %>
-            </section>
-
-            <!-- Fim Mais Lidos -->
-
-            <!-- Inicio Randon Post -->
-            <div class="followers-sec">
-                <section class="sky-form">
-                    <h4>follow heroes</h4>
-                    <div class="row row1 scroll-pane">
-                        <!--   <div class="col col-4"> -->
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/23.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">Gordon flash</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="5" class="css-checkbox5" type="checkbox">
-										 <label for="5" class="css-label5"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/17.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">Harley Quinn</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="6" class="css-checkbox6" type="checkbox">
-										 <label for="6" class="css-label6"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/18.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">The Green Lantern</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="7" class="css-checkbox7" type="checkbox">
-										 <label for="7" class="css-label7"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/19.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">Superman</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="8" class="css-checkbox8" type="checkbox">
-										 <label for="8" class="css-label8"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/20.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">Joker</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="9" class="css-checkbox9" type="checkbox">
-										 <label for="9" class="css-label9"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="follow-grid">
-                            <div class="flw-pic">
-                                <img src="/images/21.png" class="img-responsive" alt=""/>
-                            </div>
-                            <h3 class="folw-name">Hawkgirl</h3>
-                            <div class="flwr">
-										 <span class="col_checkbox">
-										 <input id="10" class="css-checkbox10" type="checkbox">
-										 <label for="10" class="css-label10"> </label>
-										 </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!-- </div> -->
-                    </div>
-                </section>
-            </div>
-            <!-- Fim Randon Post -->
-
             <div class="clearfix"></div>
-            <!---->
-            <div class="gallery">
-                <h3>New pictures from game Injasties</h3>
-                <div class="comments cmnt3 gm-cmnt">
-                    <ul>
-                        <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 32</a></li>
-                        <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 1245</li>
-                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Yesterday</li>
-                    </ul>
-                </div>
-            </div>
-            <!---->
-
-            <div class="clearfix"></div>
-
-
+            <br/>
         </div>
-        <!-- Fim Barra Lateral -->
-
-        <div class="clearfix"></div>
-
     </div>
+    <!-- Fim Lista de Notícias -->
+    <% })}else{ %>
+
+    <!-- Inicio Lista de Noticias Vazio  -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
+                    </div>
+
+                    <div class="col-md-6 post6-pic-info post6-pic-vazio">
+
+                        <h1>Sua busca não retornou resultados</h1>
+                        <div class="bnr-info">
+                            <a href="/">Limpar pesquisa</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+        </div>
+    </div>
+    <!-- Fim Post 1 -->
+    <% } %>
+
 </div>
+<!-- Fim Conteúdo do Blog -->
+
+<!----->
+
 
 <script>
     function codeAddress() {
