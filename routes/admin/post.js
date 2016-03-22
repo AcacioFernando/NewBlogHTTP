@@ -14,12 +14,12 @@ var dateFormat = require('dateformat');
 
 
 cloudinary.config({
-    cloud_name: 'hhesifpnv',
-    api_key: '141879992121428',
-    api_secret: 'VJwXZ-LKL1j2IEKiegA0-M_Jr2A'
+    cloud_name: 'ha6q3sykc',
+    api_key: '368551756826488',
+    api_secret: 'Ax0yp4DOIidFH7tg3ZQJAKPH5go'
 });
 
-var dir = "http://res.cloudinary.com/hhesifpnv/image/upload/v1458525686/";
+var dir = "http://res.cloudinary.com/ha6q3sykc/image/upload/v1458607970/";
 
 /* GET users listing. */
 router.get('/', function (req, res) {
