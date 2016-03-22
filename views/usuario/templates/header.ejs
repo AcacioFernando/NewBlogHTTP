@@ -31,7 +31,9 @@
                                 <% if(categorias != null){ %>
                                 <% categorias.forEach(function(categoria){ %>
 
-                                    <li><a href='/categoria/<%= categoria.nome_categoria%>'><%= categoria.nome_categoria%></a></li>
+                                <li>
+                                    <a href='/categoria/<%= categoria.nome_categoria %>'><%= categoria.nome_categoria %></a>
+                                </li>
                                 <% })} %>
 
                             </ul>
@@ -50,17 +52,17 @@
 
                         </form>
                     </div>
-                    <% if(usuario == null || usuario == []){ %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <button type="button" class="btn btn-admin btn-lg" data-toggle="modal" data-target="#myModal"><i
-                                    class="fa fa-gears"></i></button>
-                    </ul>
-                    <% }else{ %>
+                    <% /* if(usuario == null || usuario == []){*/ %>
+                    <!--    <ul class="nav navbar-nav navbar-right">
+                            <button type="button" class="btn btn-admin btn-lg" data-toggle="modal" data-target="#myModal"><i
+                                        class="fa fa-gears"></i></button>
+                        </ul>-->
+                    <% /*}else{ */ %>
                     <ul class="nav navbar-nav navbar-right">
                         <button type="button" class="btn btn-admin btn-lg" onclick="location.href = '/admin';"><i
                                     class="fa fa-gears"></i></button>
                     </ul>
-                    <% } %>
+                    <% /*} */ %>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -70,10 +72,10 @@
 </head>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<!--<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+        &lt;!&ndash; Modal content&ndash;&gt;
         <div class="modal-content">
             <div class="modal-header">
                 <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
@@ -112,7 +114,7 @@
         </div>
 
     </div>
-</div>
+</div>-->
 </div>
 
 

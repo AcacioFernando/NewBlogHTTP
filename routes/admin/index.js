@@ -13,25 +13,21 @@ var dateFormat = require('dateformat');
 router.get('/', function (req, res) {
     console.log("Index admin");
     console.log("Index admin 1123");
-    var usuario_logado = req.session.logged;
-    console.log("Usuario logado " + req.session.logged);
+
     var query = post.find().limit(10);
 
     try {
-        if (usuario_logado != null) {
-            console.log("Usuario logado ");
+        /*     if (usuario_logado != null) {*/
+        query.exec(function (err, noticias) {
+            if (err) {
+                res.redirect('/');
+            }
+            res.render('admin/index', {title: 'Administrador', noticias: noticias});
+        });
 
-            query.exec(function (err, noticias) {
-                if (err) {
-                    res.redirect('/');
-                }
-                res.render('admin/index', {title: 'Administrador', noticias: noticias, usuario: usuario_logado});
-            });
-
-
-        } else {
-            res.redirect('/');
-        }
+        /*     } else {
+         res.redirect('/');
+         }*/
     } catch (err) {
         res.redirect('/');
     }

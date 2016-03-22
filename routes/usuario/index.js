@@ -53,7 +53,6 @@ router.get('/', function (req, res) {
                     });
                 }
             ],
-
             //Compute all results
             function (err, results) {
                 if (err) {

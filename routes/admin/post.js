@@ -14,72 +14,68 @@ var dateFormat = require('dateformat');
 
 
 cloudinary.config({
-    cloud_name: 'hlrpvlno9',
-    api_key: '233981594891625',
-    api_secret: '95VDJfIMfT_10QuSBvqkoAl24xc'
+    cloud_name: 'hhesifpnv',
+    api_key: '141879992121428',
+    api_secret: 'VJwXZ-LKL1j2IEKiegA0-M_Jr2A'
 });
 
+var dir = "http://res.cloudinary.com/hhesifpnv/image/upload/v1458525686/";
 
 /* GET users listing. */
 router.get('/', function (req, res) {
     console.log("Post admin");
-
-    console.log(req.session.logged);
-
     var query_categoria = categoria.find();
 
-    var usuario_logado = req.session.logged;
-    console.log("Usuario logado " + req.session.logged);
+    /*    var usuario_logado = req.session.logged;
+     console.log("Usuario logado " + req.session.logged);
 
-    if (usuario_logado != null) {
+     if (usuario_logado != null) {*/
 
-        query_categoria.exec(function (err, categorias) {
-            if (err) {
-                console.error("Error query categoria find: " + err);
-                res.redirect('usuario/error');
+    query_categoria.exec(function (err, categorias) {
+        if (err) {
+            console.error("Error query categoria find: " + err);
+            res.redirect('usuario/error');
 
-            } else {
-                console.log("Categorias: ");
-                console.log(categorias);
-                res.render('admin/postCreate', {title: 'Administrador', categorias: categorias, usuario: usuario_logado});
+        } else {
+            console.log("Categorias: ");
+            console.log(categorias);
+            res.render('admin/postCreate', {title: 'Administrador', categorias: categorias});
 
-            }
-        });
-
-    } else {
-        res.redirect('/');
-    }
+        }
+    });
+    /*
+     } else {
+     res.redirect('/');
+     }*/
 });
 
 router.get('/deletar_post', function (req, res) {
     console.log("Deletar post");
-    var usuario_logado = req.session.logged;
+    /*    var usuario_logado = req.session.logged;
 
-    if (usuario_logado != null) {
-        post.find(function (err, posts) {
-            if (err) {
-                return console.error(err);
-            } else if (posts) {
-                console.log(posts);
-                console.log("Deu certo");
-                res.render('admin/postDelete', {
-                    title: "title",
-                    subTitle: "title",
-                    posts: posts,
-                    usuario: usuario_logado
-                });
-            } else {
-                res.render('admin/postDelete', {
-                    title: "title",
-                    subTitle: "title",
-                    posts: null,
-                    usuario: usuario_logado
-                })
-            }
-        });
-    } else {
-        res.redirect('/');
-    }
+     if (usuario_logado != null) {*/
+    post.find(function (err, posts) {
+        if (err) {
+            return console.error(err);
+        } else if (posts) {
+            console.log(posts);
+            console.log("Deu certo");
+            res.render('admin/postDelete', {
+                title: "title",
+                subTitle: "title",
+                posts: posts
+            });
+        } else {
+            res.render('admin/postDelete', {
+                title: "title",
+                subTitle: "title",
+                posts: null
+            })
+        }
+    });
+    /*    } else {
+     res.redirect('/');
+     }*/
 });
 
 /* Submit new form post*/
@@ -103,8 +99,8 @@ router.post('/cadastrar_post', multipartMiddleware, function (req, res, next) {
             , image_upload_path_old = image.path
             , image_upload_name = image.name.split(' ').join('-')
             , image_name_ext = title_post + image_upload_name
-            , image_name = image_name_ext.replace(".jpg", "");
-        ;
+            , image_name = image_name_ext.replace(".jpg", "")
+            , image_name_ext = dir + image_name_ext;
 
         console.log(image_name);
 
@@ -129,8 +125,6 @@ router.post('/cadastrar_post', multipartMiddleware, function (req, res, next) {
             if (user) {
                 console.log("Sem errro ");
                 // Testa se o diretório upload existe na pasta atual
-
-
                 cloudinary.uploader.upload(
                     image_upload_path_old,
                     function (result) {
@@ -213,7 +207,11 @@ router.post('/categoria', function (req, res, next) {
                     res.redirect('usuario/error');
 
                 } else {
-                    res.render('admin/postCreate', {title: 'Administrador', categorias: categorias, usuario: usuario_logado});
+                    res.render('admin/postCreate', {
+                        title: 'Administrador',
+                        categorias: categorias,
+                        usuario: usuario_logado
+                    });
 
                 }
             });
