@@ -3,66 +3,95 @@
 <!--banner-->
 <div class="banner">
 
-        <script src="/javascripts/responsiveslides.min.js"></script>
-        <script>
-            $(function () {
-                $("#slider").responsiveSlides({
-                    auto: false,
-                    nav: true,
-                    speed: 500,
-                    namespace: "callbacks",
-                    pager: true,
-                });
-            });
-        </script>
-        <div class="slider">
-            <div class="callbacks_container">
-                <ul class="rslides" id="slider">
-                    <% if(noticias != null){
-                        var contador = 0;
-                    %>
-                    <%
-                    try{
-                    noticias.forEach(function(noticia){
-                    %>
-                    <li>
-                        <div class="banner1"
-                             style="background: url('<%= noticia.img %>') no-repeat 0px 0px; ">
-                            <div class="banner-grids">
-                                <div class="banner-text">
+    <div class="slider">
 
-                                    <div class="info-box-slide info-box bg-yellow">
-                                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text"><%= noticia.category %></span>
-                                        </div><!-- /.info-box-content -->
-                                    </div>
+        <!-- Carousel
+================================================== -->
+        <div id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
 
-                                    <div class="bnr-info">
-                                        <h1> <%= noticia.title %></h1>
-                                        <p><%= noticia.sub_title %></p>
-                                        <a href='/noticia/<%= noticia._id %>'>Leia mais</a>
-                                    </div>
-                                </div>
+                <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
+                <%
+                noticias.forEach(function(noticia, index){
+                switch(index){
+                case 0:
+                %>
+
+                <div class="item active">
+                    <img src="<%= noticia.img %>"
+                         style="width:100%" class="img-responsive">
+                    <div class="container">
+                        <div class="carousel-caption">
+
+                            <div class="bnr-info">
+                                <h1><%=noticia.title%></h1>
+                                <h3><%=noticia.sub_title%></h3>
+                                <a href='/noticia/<%=noticia._id%>'>Leia mais</a>
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <%
+                    break;
+                case 1:
+                %>
+                <div class="item ">
+                    <img src="<%= noticia.img %>"
+                         style="width:100%" class="img-responsive">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="bnr-info">
+                                <h1><%=noticia.title%></h1>
+                                <h3><%=noticia.sub_title%></h3>
+                                <a href='/noticia/<%=noticia._id%>'>Leia mais</a>
+                                <p></p>
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </div>
+                <%
+                    break;
+                case 2:
+                %>
 
-                    <%
-                        contador++;
-                        if (contador == 3) {
-                            throw new Error(); // Simulated break
-                        }
+                <div class="item ">
+                    <img src="<%= noticia.img %>"
+                         style="width:100%" class="img-responsive">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="bnr-info">
+                                <h1><%=noticia.title%></h1>
+                                <h3><%=noticia.sub_title%></h3>
+                                <a href='/noticia/<%=noticia._id%>'>Leia mais</a>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    })
-                    } catch (e) {
-                    }
-                    %>
-                    <% } %>
-                </ul>
+                <% break;} })} %>
+
             </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
         </div>
-        <!----->
+        <!-- /.carousel -->
+
+    </div>
+    <!----->
 
 </div>
 
@@ -71,95 +100,95 @@
 
     <div class="container">-->
 
-        <!-- Conteúdo do Blog -->
-        <div class="content-left">
+<!-- Conteúdo do Blog -->
+<div class="content-left">
 
-            <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
-            <% noticias.forEach(function(noticia){ %>
+    <% if(typeof noticias[0] !== 'undefined' && noticias[0] !== null){ %>
+    <% noticias.forEach(function(noticia){ %>
 
-            <!-- Inicio Lista de Notícias -->
-            <div class="sec_1">
-                <div class="sec_1 grids">
-                    <div class="post6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="<%= noticia.img %>"
-                                     class="img-responsive post6-pic-img" alt="">
-                            </div>
-
-                            <div class=" col-md-6 post6-pic-info">
-
-                                <div class="info-box bg-yellow">
-                                    <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text"><%= noticia.category %></span>
-                                    </div><!-- /.info-box-content -->
-                                </div>
-
-                                <h3><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h3>
-                                <p><%= noticia.sub_title %></p>
-                                <div class="comments cmnt3">
-                                    <ul>
-                                        <li><a href='/gostei/<%= noticia._id %>'><span
-                                                        class="gostei glyphicon glyphicon-thumbs-up"
-                                                        aria-hidden="true"></span> <%= noticia.gostei %>
-                                            </a>
-                                        </li>
-                                        <li><a href='/ngostei/<%= noticia._id %>'><span
-                                                        class="gostei glyphicon glyphicon-thumbs-down"
-                                                        aria-hidden="true"></span> <%= noticia.nao_gostei %>
-                                            </a>
-                                        </li>
-                                        <li><a href="#"><span class="glyphicon glyphicon-comment"
-                                                              aria-hidden="true"></span> <%= noticia.comments.length %>
-                                            </a>
-                                        </li>
-                                        <li><span class="glyphicon glyphicon-eye-open"
-                                                  aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
-                                        <li><span class="glyphicon glyphicon-time"
-                                                  aria-hidden="true"></span><%= noticia.date %></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+    <!-- Inicio Lista de Notícias -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="<%= noticia.img %>"
+                             class="img-responsive post6-pic-img" alt="">
                     </div>
-                    <div class="clearfix"></div>
-                    <br/>
-                </div>
-            </div>
-            <!-- Fim Lista de Notícias -->
-            <% })}else{ %>
 
-            <!-- Inicio Lista de Noticias Vazio  -->
-            <div class="sec_1">
-                <div class="sec_1 grids">
-                    <div class="post6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="/images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
-                            </div>
+                    <div class=" col-md-6 post6-pic-info">
 
-                            <div class="col-md-6 post6-pic-info post6-pic-vazio">
-
-                                <h1>Sua busca não retornou resultados</h1>
-                                <div class="bnr-info">
-                                    <a href="/">Limpar pesquisa</a>
-                                </div>
-
-                            </div>
+                        <div class="info-box bg-yellow">
+                            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text"><%= noticia.category %></span>
+                            </div><!-- /.info-box-content -->
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <br/>
-                </div>
-            </div>
-            <!-- Fim Post 1 -->
-            <% } %>
 
+                        <h3><a href='/noticia/<%= noticia._id %>'><%= noticia.title %></a></h3>
+                        <p><%= noticia.sub_title %></p>
+                        <div class="comments cmnt3">
+                            <ul>
+                                <li><a href='/gostei/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-up"
+                                                aria-hidden="true"></span> <%= noticia.gostei %>
+                                    </a>
+                                </li>
+                                <li><a href='/ngostei/<%= noticia._id %>'><span
+                                                class="gostei glyphicon glyphicon-thumbs-down"
+                                                aria-hidden="true"></span> <%= noticia.nao_gostei %>
+                                    </a>
+                                </li>
+                                <li><a href="#"><span class="glyphicon glyphicon-comment"
+                                                      aria-hidden="true"></span> <%= noticia.comments.length %>
+                                    </a>
+                                </li>
+                                <li><span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span> <%= noticia.numero_clicks %> </li>
+                                <li><span class="glyphicon glyphicon-time"
+                                          aria-hidden="true"></span><%= noticia.date %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
         </div>
-        <!-- Fim Conteúdo do Blog -->
+    </div>
+    <!-- Fim Lista de Notícias -->
+    <% })}else{ %>
+
+    <!-- Inicio Lista de Noticias Vazio  -->
+    <div class="sec_1">
+        <div class="sec_1 grids">
+            <div class="post6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="/images/img-not-found.png" class="img-responsive post6-pic-img" alt="">
+                    </div>
+
+                    <div class="col-md-6 post6-pic-info post6-pic-vazio">
+
+                        <h1>Sua busca não retornou resultados</h1>
+                        <div class="bnr-info">
+                            <a href="/">Limpar pesquisa</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+        </div>
+    </div>
+    <!-- Fim Post 1 -->
+    <% } %>
+
+</div>
+<!-- Fim Conteúdo do Blog -->
 
 <!--    </div>
 </div>-->
