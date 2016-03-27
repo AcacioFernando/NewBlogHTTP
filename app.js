@@ -47,7 +47,8 @@ app.use('/ngostei', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/comentario', comentario);
-app.use('/admin/post', post);
+app.use('/admin/cadastrarnoticia', admin);
+app.use('/admin/deletarnoticia', admin);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

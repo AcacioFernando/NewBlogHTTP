@@ -69,6 +69,7 @@ router.get('/', function (req, res) {
                     noticias: results[0],
                     categorias: results[1],
                     maisLidas: results[2],
+                    noticiaBanner: results[2].slice(0, 3),
                     usuario: usuario_logado
                 });
             });
@@ -257,81 +258,89 @@ router.get('/ngostei_noticia/:id', function (req, res) {
 
 });
 
-router.get('/categoria/:nomeCategoria', function (req, res) {
+router.get('/categoria/:id', function (req, res) {
 
     console.log("Filtrar categoria");
 
     var usuario_logado = req.session.logged;
     console.log(usuario_logado);
 
-    var nomeCategoria = req.params.nomeCategoria;
+    var id = req.params.id;
+
+    var queryC = categoria.findOne({_id: id});
     try {
-        async.parallel([
-                // Find all notícias
-                function (callback) {
-                    var query = post.find({category: nomeCategoria}).limit(5);
-                    query.exec(function (err, noticias) {
-                        if (err) {
-                            callback(err);
-                        }
+        queryC.exec(function (err, categorias) {
+            if (err) {
+                console.log(err);
+                res.redirect('/usuario/error');
+            }
+            var nomeCategoria = categorias.nome_categoria;
+            async.parallel([
+                    // Find all notícias
+                    function (callback) {
+                        var query = post.find({category: nomeCategoria}).limit(5);
+                        query.exec(function (err, noticias) {
+                            if (err) {
+                                callback(err);
+                            }
 
-                        callback(null, noticias);
-                    });
-                },
+                            callback(null, noticias);
+                        });
+                    },
 
-                //Find all categorias
-                function (callback) {
-                    var query = categoria.find();
-                    query.exec(function (err, categoria) {
-                        if (err) {
-                            callback(err);
-                        }
+                    //Find all categorias
+                    function (callback) {
+                        var query = categoria.find();
+                        query.exec(function (err, categoria) {
+                            if (err) {
+                                callback(err);
+                            }
 
-                        callback(null, categoria);
-                    });
-                },
+                            callback(null, categoria);
+                        });
+                    },
 
-                //Find all mais lidos
-                function (callback) {
-                    var query = post.find().sort({numero_clicks: -1}).limit(5);
-                    query.exec(function (err, noticiasMaisLidas) {
-                        if (err) {
-                            callback(err);
-                        }
-                        callback(null, noticiasMaisLidas);
-                    });
-                }
-            ],
+                    //Find all mais lidos
+                    function (callback) {
+                        var query = post.find().sort({numero_clicks: -1}).limit(5);
+                        query.exec(function (err, noticiasMaisLidas) {
+                            if (err) {
+                                callback(err);
+                            }
+                            callback(null, noticiasMaisLidas);
+                        });
+                    }
+                ],
 
-            //Compute all results
-            function (err, results) {
-                if (err) {
-                    console.log(err);
-                    res.redirect('/');
-                }
+                //Compute all results
+                function (err, results) {
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/');
+                    }
 
-                if (results == null || results[0] == null) {
-                    res.redirect('/');
-                }
-                console.log('valor resultado categoria: ');
-                console.log(results[0]);
-                if(!results[0]) {
-                    res.render('usuario/pesquisa', {
-                        title: 'Hero',
-                        noticias: results[0],
-                        categorias: results[1],
-                        maisLidas: results[2]
-                    });
-                }else{
-                    res.render('usuario/pesquisavazia', {
-                        title: 'Hero',
-                        noticias: results[0],
-                        categorias: results[1],
-                        maisLidas: results[2]
-                    });
-                }
-            });
-
+                    if (results == null || results[0] == null) {
+                        res.redirect('/');
+                    }
+                    console.log('valor resultado categoria: ');
+                    console.log(results[0]);
+                    if (results[0]) {
+                        res.render('usuario/pesquisa', {
+                            title: 'Hero',
+                            noticias: results[0],
+                            categorias: results[1],
+                            maisLidas: results[2]
+                        });
+                    } else {
+                        res.render('usuario/pesquisavazia', {
+                            title: 'Hero',
+                            noticias: results[0],
+                            categorias: results[1],
+                            maisLidas: results[2]
+                        });
+                    }
+                });
+        });
     } catch (err) {
         console.log("Falha ao abrir : " + err);
         res.redirect('/usuario/error');
@@ -457,14 +466,14 @@ router.post('/busca', function (req, res) {
                 }
                 console.log('valor resultado busca: ');
                 console.log(results[0]);
-                if(!results[0]) {
+                if (!results[0]) {
                     res.render('usuario/pesquisa', {
                         title: 'Hero',
                         noticias: results[0],
                         categorias: results[1],
                         maisLidas: results[2]
                     });
-                }else{
+                } else {
                     res.render('usuario/pesquisavazia', {
                         title: 'Hero',
                         noticias: results[0],
@@ -585,14 +594,14 @@ router.post('/search', function (req, res) {
                 }
                 console.log('valor resultado busca: ');
                 console.log(results[0]);
-                if(!results[0]) {
+                if (!results[0]) {
                     res.render('usuario/pesquisa', {
                         title: 'Hero',
                         noticias: results[0],
                         categorias: results[1],
                         maisLidas: results[2]
                     });
-                }else{
+                } else {
                     res.render('usuario/pesquisavazia', {
                         title: 'Hero',
                         noticias: results[0],
@@ -607,51 +616,51 @@ router.post('/search', function (req, res) {
         res.redirect('/usuario/error');
     }
 
-/*
+    /*
 
 
-    var query_maisLidas = post.find().sort({numero_clicks: -1}).limit(5);
+     var query_maisLidas = post.find().sort({numero_clicks: -1}).limit(5);
 
-    post.find({content: new RegExp(srch)}, function (err, noticias) {
-        if (err) {
-            console.log("Erro busca :" + noticias);
-            return console.error(err);
-        } else if (noticias.length != []) {
+     post.find({content: new RegExp(srch)}, function (err, noticias) {
+     if (err) {
+     console.log("Erro busca :" + noticias);
+     return console.error(err);
+     } else if (noticias.length != []) {
 
-            console.log("Tudo certo" + noticias);
+     console.log("Tudo certo" + noticias);
 
-            query_maisLidas.exec(function (err, maisLidasNoticias) {
-                if (err) {
-                    console.error("Error query maisLidos find: " + err);
-                    res.redirect('usuario/error');
-                } else {
-                    res.render('usuario/index', {
-                        title: 'Hero',
-                        noticias: noticias,
-                        maisLidas: maisLidasNoticias,
-                        usuario: usuario_logado
-                    });
-                }
-            });
-        } else {
+     query_maisLidas.exec(function (err, maisLidasNoticias) {
+     if (err) {
+     console.error("Error query maisLidos find: " + err);
+     res.redirect('usuario/error');
+     } else {
+     res.render('usuario/index', {
+     title: 'Hero',
+     noticias: noticias,
+     maisLidas: maisLidasNoticias,
+     usuario: usuario_logado
+     });
+     }
+     });
+     } else {
 
-            console.log("Vazio: " + noticias);
+     console.log("Vazio: " + noticias);
 
-            query_maisLidas.exec(function (err, maisLidasNoticias) {
-                if (err) {
-                    console.error("Error query maisLidos find: " + err);
-                    res.redirect('usuario/error');
-                } else {
-                    res.render('usuario/index', {
-                        title: 'Hero',
-                        noticias: null,
-                        maisLidas: maisLidasNoticias,
-                        usuario: usuario_logado
-                    });
-                }
-            });
-        }
-    });*/
+     query_maisLidas.exec(function (err, maisLidasNoticias) {
+     if (err) {
+     console.error("Error query maisLidos find: " + err);
+     res.redirect('usuario/error');
+     } else {
+     res.render('usuario/index', {
+     title: 'Hero',
+     noticias: null,
+     maisLidas: maisLidasNoticias,
+     usuario: usuario_logado
+     });
+     }
+     });
+     }
+     });*/
 
 });
 

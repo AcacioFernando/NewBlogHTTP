@@ -49,7 +49,7 @@ router.get('/', function (req, res) {
      }*/
 });
 
-router.get('/deletar_post', function (req, res) {
+router.get('/deletarnoticia', function (req, res) {
     console.log("Deletar post");
     /*    var usuario_logado = req.session.logged;
 
