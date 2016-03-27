@@ -64,12 +64,20 @@ router.get('/', function (req, res) {
                     return null;
                 }
 
+                var noticasBanner =[];
+                results[2].forEach(function(noticia, index) {
+                    noticasBanner.push(noticia);
+                    if(index == 3){
+                        return;
+                    }
+                });
+
                 res.render('usuario/index', {
                     title: 'Hero',
                     noticias: results[0],
                     categorias: results[1],
                     maisLidas: results[2],
-                    noticiaBanner: results[2].slice(0, 3),
+                    noticiaBanner: noticasBanner,
                     usuario: usuario_logado
                 });
             });

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f61f218e-c25b-49a2-936e-9d86b3cfef35" name="Default" comment="comentários">
+    <list default="true" id="f61f218e-c25b-49a2-936e-9d86b3cfef35" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin/index.js" afterPath="$PROJECT_DIR$/routes/admin/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin/post.js" afterPath="$PROJECT_DIR$/routes/admin/post.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/usuario/index.js" afterPath="$PROJECT_DIR$/routes/usuario/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/postCreate.ejs" afterPath="$PROJECT_DIR$/views/admin/postCreate.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/postDelete.ejs" afterPath="$PROJECT_DIR$/views/admin/postDelete.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/templates/header.ejs" afterPath="$PROJECT_DIR$/views/admin/templates/header.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/usuario/index.ejs" afterPath="$PROJECT_DIR$/views/usuario/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/usuario/templates/header.ejs" afterPath="$PROJECT_DIR$/views/usuario/templates/header.ejs" />
     </list>
     <ignored path="NewBlogHTTP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,18 +81,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/usuario/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7004405">
-              <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7488987">
+              <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
               <folding>
-                <element signature="e#2570#5076#0" expanded="false" />
-                <element signature="e#5126#5683#0" expanded="false" />
-                <element signature="e#5734#6306#0" expanded="false" />
-                <element signature="e#6364#6947#0" expanded="false" />
-                <element signature="e#7006#7604#0" expanded="false" />
-                <element signature="e#7657#10745#0" expanded="false" />
-                <element signature="e#10819#12087#0" expanded="false" />
-                <element signature="e#12133#15794#0" expanded="false" />
-                <element signature="e#15841#19555#0" expanded="false" />
+                <element signature="e#2822#5328#0" expanded="false" />
+                <element signature="e#5378#5935#0" expanded="false" />
+                <element signature="e#5986#6558#0" expanded="false" />
+                <element signature="e#6616#7199#0" expanded="false" />
+                <element signature="e#7258#7856#0" expanded="false" />
+                <element signature="e#7909#10997#0" expanded="false" />
+                <element signature="e#11071#12339#0" expanded="false" />
+                <element signature="e#12385#16046#0" expanded="false" />
+                <element signature="e#16093#19807#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -623,7 +615,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459017520278</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="comentários">
+      <created>1459114865273</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1459114865273</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -632,6 +630,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13778706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="775" y="16" width="370" height="985" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43551797" sideWeight="0.50208336" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -641,7 +640,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30309498" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -680,12 +678,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/usuario/index.js</url>
-          <line>358</line>
+          <line>366</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/usuario/index.js</url>
-          <line>97</line>
+          <line>105</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -695,7 +693,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/usuario/index.js</url>
-          <line>413</line>
+          <line>421</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
@@ -1066,18 +1064,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/usuario/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7004405">
-          <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.7488987">
+          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
           <folding>
-            <element signature="e#2570#5076#0" expanded="false" />
-            <element signature="e#5126#5683#0" expanded="false" />
-            <element signature="e#5734#6306#0" expanded="false" />
-            <element signature="e#6364#6947#0" expanded="false" />
-            <element signature="e#7006#7604#0" expanded="false" />
-            <element signature="e#7657#10745#0" expanded="false" />
-            <element signature="e#10819#12087#0" expanded="false" />
-            <element signature="e#12133#15794#0" expanded="false" />
-            <element signature="e#15841#19555#0" expanded="false" />
+            <element signature="e#2822#5328#0" expanded="false" />
+            <element signature="e#5378#5935#0" expanded="false" />
+            <element signature="e#5986#6558#0" expanded="false" />
+            <element signature="e#6616#7199#0" expanded="false" />
+            <element signature="e#7258#7856#0" expanded="false" />
+            <element signature="e#7909#10997#0" expanded="false" />
+            <element signature="e#11071#12339#0" expanded="false" />
+            <element signature="e#12385#16046#0" expanded="false" />
+            <element signature="e#16093#19807#0" expanded="false" />
           </folding>
         </state>
       </provider>
